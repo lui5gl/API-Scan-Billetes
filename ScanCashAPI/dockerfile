@@ -9,4 +9,4 @@ RUN python -m venv venv
 RUN ./venv/bin/pip install --upgrade pip \
     && ./venv/bin/pip install -r requirements.txt
 
-CMD ["./venv/bin/python", "src/main.py"]
+CMD ["./venv/bin/python", "-u", "src/main.py"]
