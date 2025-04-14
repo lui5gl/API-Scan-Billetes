@@ -13,12 +13,6 @@ class ScanImageModel:
         self.client = client
 
     def get_response(self) -> Optional[str]:
-        try:
-            with open("ScanCashAPI/src/models/prompt.xml", "r", encoding="utf-8") as file:
-                prompt = file.read()
-        except FileNotFoundError:
-            print("❌ Prompt file not found.")
-            return None
 
         try:
             completion = self.client.chat.completions.create(
@@ -29,7 +23,47 @@ class ScanImageModel:
                         "content": [
                             {
                                 "type": "text",
-                                "text": prompt,
+                                "text": """
+                                        <análisis_imagen>
+                                            <tarea>Identificar si la imagen contiene un billete o no.</tarea>
+                                            <condiciones>
+                                                <condicion>
+                                                    Si la imagen **no** muestra un billete, indícalo de forma clara y directa.
+                                                </condicion>
+                                                <condicion> Si **sí** es un billete: <subcondiciones>
+                                                        <subcondicion>
+                                                            Determinar su **denominación exacta** (por ejemplo, "20 pesos", "100 dólares",
+                                                            etc.).
+                                                        </subcondicion>
+                                                        <subcondicion>
+                                                            Evaluar su **estado físico** en una de las siguientes categorías: "buen estado",
+                                                            "estado regular" o "mal estado".
+                                                        </subcondicion>
+                                                    </subcondiciones>
+                                                </condicion>
+                                            </condiciones>
+
+                                            <parametros_adicionales>
+                                                <idioma>es</idioma>
+                                                <calidad_imagen>
+                                                    Si la imagen está borrosa, mal iluminada, incompleta o deteriorada, **indicarlo como
+                                                    limitación en el análisis**.
+                                                </calidad_imagen>
+                                                <nivel_confianza>
+                                                    Incluir una **estimación de certeza** respecto a la identificación y evaluación del
+                                                    billete (alta, media o baja).
+                                                </nivel_confianza>
+                                                <region_esperada>
+                                                    Se espera que los billetes pertenezcan preferentemente a la región: **México**.
+                                                </region_esperada>
+                                                <respuesta_formato>texto</respuesta_formato>
+                                                <manejo_errores>
+                                                    Si la información no puede determinarse con claridad, responder con:
+                                                    "No se puede determinar con precisión debido a la calidad o ambigüedad de la imagen."
+                                                </manejo_errores>
+                                            </parametros_adicionales>
+                                        </análisis_imagen>
+                                        """,
                             },
                             {
                                 "type": "image_url",
