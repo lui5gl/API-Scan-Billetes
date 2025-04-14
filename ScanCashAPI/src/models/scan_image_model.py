@@ -1,6 +1,8 @@
 import base64
-from openai import OpenAI
+import datetime
 from typing import Optional
+
+from openai import OpenAI
 
 client = OpenAI()
 
@@ -39,6 +41,7 @@ class ScanImageModel:
                     }
                 ],
             )
+            print("Response sent in: " + str(datetime.datetime.now()))
             return completion.choices[0].message.content
         except Exception as e:
             print(f"❌ Error getting response from OpenAI: {e}")

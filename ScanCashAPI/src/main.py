@@ -1,3 +1,5 @@
+import datetime
+
 from flask import Flask, jsonify, request
 from models.scan_image_model import ScanImageModel
 
@@ -11,6 +13,7 @@ def scanImage():
 
     if "image" not in request.files or request.files["image"] is None:
         return "No image provided", 400
+    print("Request received at: " + str(datetime.datetime.now()))
 
     image = request.files["image"]
     scan_image_model = ScanImageModel(image_base64=image.read())
