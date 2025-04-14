@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  scan-cash-api:
+    container_name: ScanCashAPI
+    build:
+      context: ScanCashAPI
+    ports:
+      - "5000:5000"
