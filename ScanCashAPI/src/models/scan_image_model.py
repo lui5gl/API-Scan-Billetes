@@ -14,7 +14,7 @@ class ScanImageModel:
 
     def get_response(self) -> Optional[str]:
         try:
-            with open("prompt.xml", "r", encoding="utf-8") as file:
+            with open("ScanCashAPI/src/models/prompt.xml", "r", encoding="utf-8") as file:
                 prompt = file.read()
         except FileNotFoundError:
             print("❌ Prompt file not found.")
