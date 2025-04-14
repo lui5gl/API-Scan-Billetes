@@ -1,9 +1,25 @@
 import datetime
+import time
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, g
 from models.scan_image_model import ScanImageModel
 
 app = Flask(__name__)
+
+
+@app.before_request
+def before_request():
+    g.start_time = time.time()
+    print(
+        f">> Request received at {time.strftime('%H:%M:%S')} from {request.remote_addr}"
+    )
+
+
+@app.after_request
+def after_request(response):
+    duration = time.time() - g.start_time
+    print(f"<< Response sent in {int(duration * 1000)} ms")
+    return response
 
 
 @app.route("/", methods=["POST"])
