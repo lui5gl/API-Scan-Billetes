@@ -1,10 +1,7 @@
 from flask import Flask, jsonify, request
-from openai import OpenAI
-
 from models.scan_image_model import ScanImageModel
 
 app = Flask(__name__)
-client = OpenAI()
 
 
 @app.route("/", methods=["POST"])
@@ -12,18 +9,13 @@ def scanImage():
     if request.method != "POST":
         return "Method not allowed", 405
 
-    if "image" not in request.files:
+    if "image" not in request.files or request.files["image"] is None:
         return "No image provided", 400
 
     image = request.files["image"]
-
-    if image.filename == "":
-        return "No image provided", 400
-
-    scan_image_model = ScanImageModel(image_base64=image.read(), client=client)
+    scan_image_model = ScanImageModel(image_base64=image.read())
 
     response = scan_image_model.get_response()
-
     return jsonify({"response": response})
 
 
