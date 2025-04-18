@@ -24,7 +24,11 @@ def scanImage():
 
 @app.route("/health", methods=["GET"])
 def health():
-    return jsonify({"status": "healthy"}), 200
+    """
+    Health check endpoint.
+    :return: JSON response indicating the service is healthy.
+    """
+    return jsonify({"status": "ok"}), 200
 
 
 if __name__ == "__main__":
