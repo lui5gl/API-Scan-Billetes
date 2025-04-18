@@ -4,8 +4,7 @@ services:
   scan-cash-api:
     container_name: ScanCashAPI
     restart: always
-    build:
-      context: ScanCashAPI
+    build: .
     ports:
       - "5000:5000"
     environment:
