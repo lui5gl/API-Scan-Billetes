@@ -44,7 +44,7 @@ def send_image_to_api(image_path: str):
 
 
 if __name__ == "__main__":
-    IMG = "ScanCashAPI/public/un_quetzal.png"
+    IMG = "public/un_quetzal.png"
     response = send_image_to_api(IMG)
 
     print(f"Response from API: {response}")

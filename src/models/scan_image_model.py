@@ -15,7 +15,7 @@ class ScanImageModel:
     def get_response(self) -> Optional[str]:
         try:
             with open(
-                "ScanCashAPI/public/un_quetzal.png", "r", encoding="utf-8"
+                "src/models/prompt.xml", "r", encoding="utf-8"
             ) as file:
                 prompt = file.read()
                 

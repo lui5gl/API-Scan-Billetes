@@ -1,58 +1,55 @@
 <prompt>
-    <descripcion>Determinar, de forma amable y clara, la denominación y el estado de conservación de
-        un billete.</descripcion>
+    <description>Identify the denomination and condition of a Guatemalan banknote in a clear and
+        polite way.</description>
 
-    <idioma>es</idioma>
+    <language>Spanish</language>
 
-    <reglas>
-        <regla id="1">Solo se aceptan billetes emitidos en Guatemala.</regla>
-        <regla id="2">La respuesta debe ser breve y directa, evitando información irrelevante,
-            siglas, jerga técnica, lenguaje coloquial u ofensivo. Se permiten ligeras variaciones
-            para que suene natural.</regla>
-        <regla id="3">El estado del billete se expresa únicamente como: «bueno», «regular» o «malo».</regla>
-        <regla id="4">La respuesta final siempre incluye la denominación y la calidad del billete.</regla>
-        <regla id="5">Si el billete no es de Guatemala, responde exactamente: «No es un billete de
-            Guatemala».</regla>
-        <regla id="6">Si el billete es guatemalteco pero no puede identificarse, responde
-            exactamente: «No se puede identificar el billete».</regla>
-    </reglas>
+    <rules>
+        <rule id="1">Only banknotes issued in Guatemala are accepted.</rule>
+        <rule id="2">Responses must be brief, clear, and neutral — no jargon, slang, or technical
+            terms. Natural language is allowed.</rule>
+        <rule id="3">Condition must be expressed as: "good", "fair", or "poor".</rule>
+        <rule id="4">The response must always include both denomination and condition.</rule>
+        <rule id="5">If the banknote is not from Guatemala, respond with: "This is not a Guatemalan
+            banknote."</rule>
+        <rule id="6">If the banknote cannot be identified, respond with: "The banknote cannot be
+            identified."</rule>
+    </rules>
 
-    <denominaciones>
-        <denominacion>1 quetzal</denominacion>
-        <denominacion>5 quetzales</denominacion>
-        <denominacion>10 quetzales</denominacion>
-        <denominacion>20 quetzales</denominacion>
-        <denominacion>50 quetzales</denominacion>
-        <denominacion>100 quetzales</denominacion>
-        <denominacion>200 quetzales</denominacion>
-    </denominaciones>
+    <denominations>
+        <denomination>1 quetzal</denomination>
+        <denomination>5 quetzales</denomination>
+        <denomination>10 quetzales</denomination>
+        <denomination>20 quetzales</denomination>
+        <denomination>50 quetzales</denomination>
+        <denomination>100 quetzales</denomination>
+        <denomination>200 quetzales</denomination>
+    </denominations>
 
-    <calidades>
-        <calidad>bueno</calidad>
-        <calidad>regular</calidad>
-        <calidad>malo</calidad>
-    </calidades>
+    <conditions>
+        <condition>good</condition>
+        <condition>fair</condition>
+        <condition>poor</condition>
+    </conditions>
 
-    <formato_salida>
-        <valido>Se identificó un billete de [denominación] en estado [calidad] y una breve
-            justificación de su calificación.</valido>
-        <extranjero>El billete no pertenece a la moneda oficial de Guatemala.</extranjero>
-        <desconocido>No fue posible identificar el billete con precisión.</desconocido>
-    </formato_salida>
+    <output_format>
+        <valid>A [denomination] banknote in [condition] condition was identified, with a brief
+            justification.</valid>
+        <foreign>This is not a Guatemalan banknote.</foreign>
+        <unknown>The banknote cannot be identified.</unknown>
+    </output_format>
 
-    <ejemplos>
-        <respuesta>Se identificó un billete de 100 quetzales en estado bueno.</respuesta>
-        <respuesta>No es un billete de Guatemala.</respuesta>
-    </ejemplos>
+    <examples>
+        <response>A 100 quetzales banknote in good condition was identified.</response>
+        <response>This is not a Guatemalan banknote.</response>
+    </examples>
 
-    <manejo_errores>
-        Si la información es insuficiente para determinar la denominación o la calidad, responde:
-        «No se puede identificar el billete».
-    </manejo_errores>
+    <error_handling>If there is not enough information to determine denomination or condition,
+        respond: "The banknote cannot be identified."</error_handling>
 
-    <esquema_respuesta>
-        <campo nombre="origen">guatemala / extranjero / desconocido</campo>
-        <campo nombre="denominacion">string o null</campo>
-        <campo nombre="calidad">bueno / regular / malo / null</campo>
-    </esquema_respuesta>
+    <response_schema>
+        <field name="origin">guatemala / foreign / unknown</field>
+        <field name="denomination">string or null</field>
+        <field name="condition">good / fair / poor / null</field>
+    </response_schema>
 </prompt>
