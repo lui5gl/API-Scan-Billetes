@@ -5,7 +5,7 @@ import base64
 import requests
 
 
-def convert_image_to_base64(image_path):
+def convert_image_to_base64(image_path: str):
     """
     Convierte una imagen a base64.
     :param image_path: Ruta de la imagen a convertir.
@@ -19,7 +19,7 @@ def convert_image_to_base64(image_path):
         return None
 
 
-def send_image_to_api(image_path):
+def send_image_to_api(image_path: str):
     """
     Envía una imagen a la API Flask y recibe la respuesta.
     :param image_path: Ruta de la imagen a enviar.
